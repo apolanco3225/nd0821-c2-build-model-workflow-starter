@@ -28,6 +28,11 @@ def go(args):
     # select rows based on the condition and make a copy
     data = data[idx].copy()
 
+    # extra cleaning longitude column
+    idx = data['longitude'].between(-74.25, -73.50) & data['latitude'].between(40.5, 41.2)
+    # select rows based on the conditino and make a copy of the new dataframe
+    data = data[idx].copy()
+
     # Convert last_review to datetime
     data['last_review'] = pd.to_datetime(data['last_review'])
     print(data.info())
